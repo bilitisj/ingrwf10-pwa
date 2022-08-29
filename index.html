@@ -93,7 +93,7 @@
       <footer class="footer">
         <div class="content has-text-centered">
           <p>
-            <strong>SNCB</strong> by <a href="https://sncb.be">Piere Charlier</a>.
+            <strong>SNCB</strong> by <a href="https://sncb.be">Pierre Charlier</a>.
           </p>
         </div>
       </footer>
@@ -111,6 +111,28 @@
             })
           })
         }
+
+        //Affichage du bouton d'installation
+        const installBtn = document.querySelector(".install")
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (event) => {
+          event.preventDefault()
+          deferredPrompt = event
+          installBtn.classList.remove('hidden')
+        })
+        installBtn.addEventListener('click', (event) => {
+          deferredPrompt.prompt()
+          installBtn.classList.add('hidden')
+          deferredPrompt.userChoice.then(choice => {
+            if(choice === 'accepted') {
+              console.log("Installation acceptée")
+            }
+            else {
+              console.log("Installation refusée")
+            }
+            deferredPrompt = null
+          })
+        })
       </script>
 </body>
 </html>
