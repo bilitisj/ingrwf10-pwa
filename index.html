@@ -7,13 +7,15 @@
     <title>Liste des gares</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="main.css">
     <meta name="theme-color" content="#00D1B2">
+    <link rel="stylesheet" href="main.css">
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" sizes="192x192" href="android-icon-192x192.png" >
-    <!-- Safari uniquement-->
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="192x192" href="android-icon-192x192.png">
+    <!-- Safari uniquement -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-startup-image" href="android-icon-36x36.png">
+
 </head>
 <body>
         <div class="modal">
@@ -70,20 +72,20 @@
                                                       <th>Départ</th>
                                                       <th>Quai</th>
                                                       <th>Retard</th>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>Namur</td>
-                                                        <td>20:00</td>
-                                                        <td>1</td>
-                                                        <td>10 mins.</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>Bruxelles</td>
-                                                        <td>20:12</td>
-                                                        <td>2</td>
-                                                        <td>0 mins.</td>
-                                                      </tr>
-                                                    </table>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>Namur</td>
+                                                      <td>20:00</td>
+                                                      <td>1</td>
+                                                      <td>10 mins.</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>Bruxelles</td>
+                                                      <td>20:12</td>
+                                                      <td>2</td>
+                                                      <td>0 mins.</td>
+                                                    </tr>
+                                                  </table>
                                                 </div>
                                         </div>
                                     </li>
@@ -93,12 +95,16 @@
       <footer class="footer">
         <div class="content has-text-centered">
           <p>
-            <strong>SNCB</strong> by <a href="https://sncb.be">Pierre Charlier</a>.
+            <strong>SNCB</strong> by <a href="https://sncb.be">Piere Charlier</a>.
           </p>
         </div>
       </footer>
+      
+      <script src="register-sw.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
       <script src="main.js"></script>
-      <script src="register-sw.js"></script>
+
+      
+      
 </body>
 </html>
