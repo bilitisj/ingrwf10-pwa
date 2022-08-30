@@ -41,6 +41,7 @@ workbox.precaching.precacheAndRoute([
     }
   ])
 
+  //gérer le cache d'une image
 workbox.routing.registerRoute(
     /(.*)\.(?:png|gif|jpg|css|js|ico|webp)$/,
     new workbox.strategies.CacheFirst({
