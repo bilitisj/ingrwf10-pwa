@@ -52,7 +52,8 @@ const setResponseCache = (cacheName, request, response) => {
     })
 }
 
-//------------ Stratégie de cache ------------
+//--------------- Stratégie de cache ---------------
+
 // Méthode de stratégie cacheFirst --> priorité au cache (si fichier est dans le cache, on l'utilise)
 const getResponseFromCacheFirst = (cacheName, request) => {
     const response = getResponseFromCache(cacheName, request)
@@ -79,6 +80,7 @@ const getResponseFromCacheFirst = (cacheName, request) => {
 self.addEventListener("fetch", (event) => {
     // on récupère l'url de la reqest exécutée par le navigateur
     const requestUrl = new URL (event.request.url)
+    console.log(requestUrl.pathname)
     // on intercepte la requête et on va appliquer la stratégie cacheFirst
     if(requestUrl.pathname.startsWith('/assets')) {
         // si une requête dont le pathname commence par assets
@@ -86,4 +88,50 @@ self.addEventListener("fetch", (event) => {
             getResponseFromCacheFirst(ASSETS_CACHE_NAME, event.request)
         )
     }
+    if(requestUrl.pathname.startsWith('/stations/')) {
+        console.log('appel de api')
+        // renvoi au navigateur
+        event.respondWith(
+            getResponseFromNetworkFirst(API_CACHE_NAME, event.request)
+        )
+    }
 })
+
+
+// Méthode de stratégie networkFirst
+
+const getResponseFromNetworkFirst = (
+    cacheName,
+    request
+) => {
+    // test si connexion
+    return fetch(request)
+    .then( response => {
+        if(response) {
+        //exécution du setter
+        setResponseCache(
+            cacheName,
+            request,
+            response.clone()
+        )
+        //on envoie la réponse à la stratégie
+        return response
+        } else {
+            //pas IntersectionObserverEntry, donc on lance le getter
+            const responseCache = getResponseFromCache(
+                cacheName, request
+            )
+            .then(responseCache => {
+                //si en cache
+                if(responseCache) {
+                    return responseCache
+                } else//sinon, c'est mort
+                {
+                    return 'error'
+                }
+            })
+        }
+    })
+    
+    return response
+}
